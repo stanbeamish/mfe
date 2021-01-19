@@ -1,14 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
   const history = useHistory();
 
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
-      initialPath: history.location.pathname,
+      initialPath: history.location.pathname, 
       onNavigate: ({ pathname: nextPathname }) => { // directly rename the destructured pathname
         // console.log('Container noticed navigation in Marketing');
         // console.log(location);
@@ -19,7 +19,8 @@ export default () => {
         if (pathname !== nextPathname) {
           history.push(nextPathname);
         }
-      }
+      },
+      onSignIn,
     });
 
     history.listen(onParentNavigate);
