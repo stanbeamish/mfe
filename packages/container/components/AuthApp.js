@@ -9,11 +9,7 @@ export default ({ onSignIn }) => {
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
       initialPath: history.location.pathname, 
-      onNavigate: ({ pathname: nextPathname }) => { // directly rename the destructured pathname
-        // console.log('Container noticed navigation in Marketing');
-        // console.log(location);
-        // where did the Marketing app navigate to
-        // update the current location of the container
+      onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;
         
         if (pathname !== nextPathname) {
